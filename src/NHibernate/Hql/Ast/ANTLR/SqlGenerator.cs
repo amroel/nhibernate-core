@@ -379,6 +379,28 @@ namespace NHibernate.Hql.Ast.ANTLR
 			queryWriter.Take = Convert.ToInt32(node.Text);
 		}
 
+		private void BeginBitwiseOp(string op)
+		{
+			var function = sessionFactory.SQLFunctionRegistry.FindSQLFunction(op.ToLowerInvariant());
+			if (function == null)
+				return;
+
+			outputStack.Insert(0, writer);
+			writer = new BitwiseOperation();
+		}
+
+		private void EndBitwiseOp(string op)
+		{
+			ISQLFunction function = sessionFactory.SQLFunctionRegistry.FindSQLFunction(op.ToLowerInvariant());
+			if (function == null)
+				return;
+
+			var functionArguments = (BitwiseOperation)writer;
+			writer = outputStack[0];
+			outputStack.RemoveAt(0);
+			Out(function.Render(functionArguments.Args, sessionFactory));
+		}
+
 		#region Nested type: DefaultWriter
 
 		/// <summary>
@@ -541,6 +563,43 @@ namespace NHibernate.Hql.Ast.ANTLR
 			}
 
 			#endregion
+		}
+
+		#endregion
+
+		#region Nested type: BitwiseOperation
+
+		private class BitwiseOperation : ISqlWriter
+		{
+			private readonly List<SqlString> _args = new List<SqlString>();
+
+			#region ISqlWriter Members
+
+			public void Clause(string clause)
+			{
+				Clause(SqlString.Parse(clause));
+			}
+
+			public void Clause(SqlString clause)
+			{
+				_args.Add(clause);
+			}
+
+			public void PushParameter(Parameter parameter)
+			{
+				_args.Add(new SqlString(parameter));
+			}
+
+			public void CommaBetweenParameters(string comma)
+			{
+			}
+
+			#endregion
+
+			public IList Args
+			{
+				get { return _args; }
+			}
 		}
 
 		#endregion

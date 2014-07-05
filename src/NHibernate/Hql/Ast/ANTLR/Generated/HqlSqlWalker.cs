@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 HqlSqlWalker.g 2011-06-14 20:28:08
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 HqlSqlWalker.g 2014-07-05 12:15:52
 
 // The variable 'variable' is assigned but its value is never used.
 #pragma warning disable 168, 219
@@ -180,8 +180,8 @@ public partial class HqlSqlWalker : TreeParser
     public const int SELECT_COLUMNS = 144;
     public const int LT = 109;
     public const int EXPONENT = 130;
-    public const int STAR = 120;
     public const int FLOAT_SUFFIX = 131;
+    public const int STAR = 120;
     public const int FILTERS = 147;
     public const int LITERAL_by = 56;
     public const int PROPERTY_REF = 142;
@@ -681,7 +681,7 @@ public partial class HqlSqlWalker : TreeParser
 
 
             	// AST REWRITE
-            	// elements:          w, f, s, u
+            	// elements:          u, w, s, f
             	// token labels:      u
             	// rule labels:       f, w, retval, s
             	// token list labels: 
@@ -1845,7 +1845,7 @@ public partial class HqlSqlWalker : TreeParser
 
 
             	// AST REWRITE
-            	// elements:          sk, o, h, g, s, tk, w, f
+            	// elements:          sk, o, h, s, tk, g, w, f
             	// token labels:      
             	// rule labels:       f, w, g, sk, retval, s, o, tk, h
             	// token list labels: 
@@ -2745,7 +2745,7 @@ public partial class HqlSqlWalker : TreeParser
 
 
             	// AST REWRITE
-            	// elements:          x, d
+            	// elements:          d, x
             	// token labels:      d
             	// rule labels:       retval, x
             	// token list labels: 
@@ -9179,7 +9179,7 @@ public partial class HqlSqlWalker : TreeParser
 
 
             	// AST REWRITE
-            	// elements:          i, rhs2, lhs2
+            	// elements:          rhs2, i, lhs2
             	// token labels:      i
             	// rule labels:       retval, rhs2, lhs2
             	// token list labels: 
@@ -9681,7 +9681,7 @@ public partial class HqlSqlWalker : TreeParser
 
 
             	// AST REWRITE
-            	// elements:          d, rhs, lhs
+            	// elements:          rhs, lhs, d
             	// token labels:      d
             	// rule labels:       retval, rhs, lhs
             	// token list labels: 

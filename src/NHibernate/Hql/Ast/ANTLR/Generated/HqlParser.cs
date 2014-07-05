@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 Hql.g 2011-05-22 07:45:49
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 Hql.g 2014-07-05 12:15:51
 
 // The variable 'variable' is assigned but its value is never used.
 #pragma warning disable 168, 219
@@ -1067,7 +1067,7 @@ public partial class HqlParser : Parser
 
 
             	// AST REWRITE
-            	// elements:          path, asAlias
+            	// elements:          asAlias, path
             	// token labels:      
             	// rule labels:       retval
             	// token list labels: 
@@ -3555,7 +3555,7 @@ public partial class HqlParser : Parser
 
 
             	// AST REWRITE
-            	// elements:          propertyFetch, asAlias, path
+            	// elements:          asAlias, propertyFetch, path
             	// token labels:      
             	// rule labels:       retval
             	// token list labels: 
@@ -3801,7 +3801,7 @@ public partial class HqlParser : Parser
 
 
             	// AST REWRITE
-            	// elements:          alias, path
+            	// elements:          path, alias
             	// token labels:      
             	// rule labels:       retval
             	// token list labels: 
@@ -3952,7 +3952,7 @@ public partial class HqlParser : Parser
 
 
                     	// AST REWRITE
-                    	// elements:          path, alias
+                    	// elements:          alias, path
                     	// token labels:      
                     	// rule labels:       retval
                     	// token list labels: 
@@ -8084,7 +8084,7 @@ public partial class HqlParser : Parser
 
 
                     	// AST REWRITE
-                    	// elements:          whenClause, CASE, elseClause
+                    	// elements:          CASE, elseClause, whenClause
                     	// token labels:      
                     	// rule labels:       retval
                     	// token list labels: 

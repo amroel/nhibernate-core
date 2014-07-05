@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 SqlGenerator.g 2011-05-22 07:45:52
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 SqlGenerator.g 2014-07-05 12:15:53
 
 // The variable 'variable' is assigned but its value is never used.
 #pragma warning disable 168, 219
@@ -187,8 +187,8 @@ public partial class SqlGenerator : TreeParser
     public const int SELECT_COLUMNS = 144;
     public const int EXPONENT = 130;
     public const int LT = 109;
-    public const int STAR = 120;
     public const int FLOAT_SUFFIX = 131;
+    public const int STAR = 120;
     public const int FILTERS = 147;
     public const int LITERAL_by = 56;
     public const int PROPERTY_REF = 142;
@@ -271,8 +271,8 @@ public partial class SqlGenerator : TreeParser
     public const int PROPERTIES = 43;
     public const int BOGUS = 150;
     public const int ORDER = 41;
-    public const int MAX = 35;
     public const int UPDATE = 53;
+    public const int MAX = 35;
     public const int JOIN_FRAGMENT = 137;
     public const int SUM = 49;
     public const int AND = 6;
@@ -4901,19 +4901,24 @@ public partial class SqlGenerator : TreeParser
                     {
                     	Match(input,BAND,FOLLOW_BAND_in_bitwiseExpr1699); if (state.failed) return ;
 
+                    	if ( (state.backtracking==0) )
+                    	{
+                    	   BeginBitwiseOp("band"); 
+                    	}
+
                     	Match(input, Token.DOWN, null); if (state.failed) return ;
-                    	PushFollow(FOLLOW_expr_in_bitwiseExpr1701);
+                    	PushFollow(FOLLOW_expr_in_bitwiseExpr1703);
                     	expr();
                     	state.followingStackPointer--;
                     	if (state.failed) return ;
-                    	if ( (state.backtracking==0) )
-                    	{
-                    	   Out("&"); 
-                    	}
                     	PushFollow(FOLLOW_nestedExpr_in_bitwiseExpr1705);
                     	nestedExpr();
                     	state.followingStackPointer--;
                     	if (state.failed) return ;
+                    	if ( (state.backtracking==0) )
+                    	{
+                    	   EndBitwiseOp("band"); 
+                    	}
 
                     	Match(input, Token.UP, null); if (state.failed) return ;
 
@@ -4922,21 +4927,26 @@ public partial class SqlGenerator : TreeParser
                 case 2 :
                     // SqlGenerator.g:309:4: ^( BOR expr nestedExpr )
                     {
-                    	Match(input,BOR,FOLLOW_BOR_in_bitwiseExpr1712); if (state.failed) return ;
+                    	Match(input,BOR,FOLLOW_BOR_in_bitwiseExpr1714); if (state.failed) return ;
+
+                    	if ( (state.backtracking==0) )
+                    	{
+                    	   BeginBitwiseOp("bor"); 
+                    	}
 
                     	Match(input, Token.DOWN, null); if (state.failed) return ;
-                    	PushFollow(FOLLOW_expr_in_bitwiseExpr1714);
+                    	PushFollow(FOLLOW_expr_in_bitwiseExpr1718);
                     	expr();
+                    	state.followingStackPointer--;
+                    	if (state.failed) return ;
+                    	PushFollow(FOLLOW_nestedExpr_in_bitwiseExpr1720);
+                    	nestedExpr();
                     	state.followingStackPointer--;
                     	if (state.failed) return ;
                     	if ( (state.backtracking==0) )
                     	{
-                    	   Out("|"); 
+                    	   EndBitwiseOp("bor"); 
                     	}
-                    	PushFollow(FOLLOW_nestedExpr_in_bitwiseExpr1718);
-                    	nestedExpr();
-                    	state.followingStackPointer--;
-                    	if (state.failed) return ;
 
                     	Match(input, Token.UP, null); if (state.failed) return ;
 
@@ -4945,21 +4955,26 @@ public partial class SqlGenerator : TreeParser
                 case 3 :
                     // SqlGenerator.g:310:4: ^( BXOR expr nestedExpr )
                     {
-                    	Match(input,BXOR,FOLLOW_BXOR_in_bitwiseExpr1725); if (state.failed) return ;
+                    	Match(input,BXOR,FOLLOW_BXOR_in_bitwiseExpr1729); if (state.failed) return ;
+
+                    	if ( (state.backtracking==0) )
+                    	{
+                    	   BeginBitwiseOp("bxor"); 
+                    	}
 
                     	Match(input, Token.DOWN, null); if (state.failed) return ;
-                    	PushFollow(FOLLOW_expr_in_bitwiseExpr1727);
+                    	PushFollow(FOLLOW_expr_in_bitwiseExpr1733);
                     	expr();
+                    	state.followingStackPointer--;
+                    	if (state.failed) return ;
+                    	PushFollow(FOLLOW_nestedExpr_in_bitwiseExpr1735);
+                    	nestedExpr();
                     	state.followingStackPointer--;
                     	if (state.failed) return ;
                     	if ( (state.backtracking==0) )
                     	{
-                    	   Out("^"); 
+                    	   EndBitwiseOp("bxor"); 
                     	}
-                    	PushFollow(FOLLOW_nestedExpr_in_bitwiseExpr1731);
-                    	nestedExpr();
-                    	state.followingStackPointer--;
-                    	if (state.failed) return ;
 
                     	Match(input, Token.UP, null); if (state.failed) return ;
 
@@ -4968,18 +4983,22 @@ public partial class SqlGenerator : TreeParser
                 case 4 :
                     // SqlGenerator.g:311:4: ^( BNOT nestedExpr )
                     {
-                    	Match(input,BNOT,FOLLOW_BNOT_in_bitwiseExpr1738); if (state.failed) return ;
+                    	Match(input,BNOT,FOLLOW_BNOT_in_bitwiseExpr1744); if (state.failed) return ;
 
                     	if ( (state.backtracking==0) )
                     	{
-                    	   Out("~"); 
+                    	   BeginBitwiseOp("bnot"); 
                     	}
 
                     	Match(input, Token.DOWN, null); if (state.failed) return ;
-                    	PushFollow(FOLLOW_nestedExpr_in_bitwiseExpr1742);
+                    	PushFollow(FOLLOW_nestedExpr_in_bitwiseExpr1748);
                     	nestedExpr();
                     	state.followingStackPointer--;
                     	if (state.failed) return ;
+                    	if ( (state.backtracking==0) )
+                    	{
+                    	   EndBitwiseOp("bnot"); 
+                    	}
 
                     	Match(input, Token.UP, null); if (state.failed) return ;
 
@@ -5032,10 +5051,10 @@ public partial class SqlGenerator : TreeParser
                 case 1 :
                     // SqlGenerator.g:315:4: ^( STAR nestedExpr nestedExpr )
                     {
-                    	Match(input,STAR,FOLLOW_STAR_in_multiplicativeExpr1756); if (state.failed) return ;
+                    	Match(input,STAR,FOLLOW_STAR_in_multiplicativeExpr1763); if (state.failed) return ;
 
                     	Match(input, Token.DOWN, null); if (state.failed) return ;
-                    	PushFollow(FOLLOW_nestedExpr_in_multiplicativeExpr1758);
+                    	PushFollow(FOLLOW_nestedExpr_in_multiplicativeExpr1765);
                     	nestedExpr();
                     	state.followingStackPointer--;
                     	if (state.failed) return ;
@@ -5043,7 +5062,7 @@ public partial class SqlGenerator : TreeParser
                     	{
                     	   Out("*"); 
                     	}
-                    	PushFollow(FOLLOW_nestedExpr_in_multiplicativeExpr1762);
+                    	PushFollow(FOLLOW_nestedExpr_in_multiplicativeExpr1769);
                     	nestedExpr();
                     	state.followingStackPointer--;
                     	if (state.failed) return ;
@@ -5055,10 +5074,10 @@ public partial class SqlGenerator : TreeParser
                 case 2 :
                     // SqlGenerator.g:316:4: ^( DIV nestedExpr nestedExprAfterMinusDiv )
                     {
-                    	Match(input,DIV,FOLLOW_DIV_in_multiplicativeExpr1769); if (state.failed) return ;
+                    	Match(input,DIV,FOLLOW_DIV_in_multiplicativeExpr1776); if (state.failed) return ;
 
                     	Match(input, Token.DOWN, null); if (state.failed) return ;
-                    	PushFollow(FOLLOW_nestedExpr_in_multiplicativeExpr1771);
+                    	PushFollow(FOLLOW_nestedExpr_in_multiplicativeExpr1778);
                     	nestedExpr();
                     	state.followingStackPointer--;
                     	if (state.failed) return ;
@@ -5066,7 +5085,7 @@ public partial class SqlGenerator : TreeParser
                     	{
                     	   Out("/"); 
                     	}
-                    	PushFollow(FOLLOW_nestedExprAfterMinusDiv_in_multiplicativeExpr1775);
+                    	PushFollow(FOLLOW_nestedExprAfterMinusDiv_in_multiplicativeExpr1782);
                     	nestedExprAfterMinusDiv();
                     	state.followingStackPointer--;
                     	if (state.failed) return ;
@@ -5109,7 +5128,7 @@ public partial class SqlGenerator : TreeParser
                     	{
                     	   Out("("); 
                     	}
-                    	PushFollow(FOLLOW_additiveExpr_in_nestedExpr1797);
+                    	PushFollow(FOLLOW_additiveExpr_in_nestedExpr1804);
                     	additiveExpr();
                     	state.followingStackPointer--;
                     	if (state.failed) return ;
@@ -5127,7 +5146,7 @@ public partial class SqlGenerator : TreeParser
                     	{
                     	   Out("("); 
                     	}
-                    	PushFollow(FOLLOW_bitwiseExpr_in_nestedExpr1812);
+                    	PushFollow(FOLLOW_bitwiseExpr_in_nestedExpr1819);
                     	bitwiseExpr();
                     	state.followingStackPointer--;
                     	if (state.failed) return ;
@@ -5141,7 +5160,7 @@ public partial class SqlGenerator : TreeParser
                 case 3 :
                     // SqlGenerator.g:323:4: expr
                     {
-                    	PushFollow(FOLLOW_expr_in_nestedExpr1819);
+                    	PushFollow(FOLLOW_expr_in_nestedExpr1826);
                     	expr();
                     	state.followingStackPointer--;
                     	if (state.failed) return ;
@@ -5182,7 +5201,7 @@ public partial class SqlGenerator : TreeParser
                     	{
                     	   Out("("); 
                     	}
-                    	PushFollow(FOLLOW_arithmeticExpr_in_nestedExprAfterMinusDiv1841);
+                    	PushFollow(FOLLOW_arithmeticExpr_in_nestedExprAfterMinusDiv1848);
                     	arithmeticExpr();
                     	state.followingStackPointer--;
                     	if (state.failed) return ;
@@ -5196,7 +5215,7 @@ public partial class SqlGenerator : TreeParser
                 case 2 :
                     // SqlGenerator.g:329:4: expr
                     {
-                    	PushFollow(FOLLOW_expr_in_nestedExprAfterMinusDiv1848);
+                    	PushFollow(FOLLOW_expr_in_nestedExprAfterMinusDiv1855);
                     	expr();
                     	state.followingStackPointer--;
                     	if (state.failed) return ;
@@ -5250,7 +5269,7 @@ public partial class SqlGenerator : TreeParser
                 case 1 :
                     // SqlGenerator.g:333:4: ^( CASE ( ^( WHEN booleanExpr[false] expr ) )+ ( ^( ELSE expr ) )? )
                     {
-                    	Match(input,CASE,FOLLOW_CASE_in_caseExpr1860); if (state.failed) return ;
+                    	Match(input,CASE,FOLLOW_CASE_in_caseExpr1867); if (state.failed) return ;
 
                     	if ( (state.backtracking==0) )
                     	{
@@ -5276,7 +5295,7 @@ public partial class SqlGenerator : TreeParser
                     			case 1 :
                     			    // SqlGenerator.g:334:5: ^( WHEN booleanExpr[false] expr )
                     			    {
-                    			    	Match(input,WHEN,FOLLOW_WHEN_in_caseExpr1870); if (state.failed) return ;
+                    			    	Match(input,WHEN,FOLLOW_WHEN_in_caseExpr1877); if (state.failed) return ;
 
                     			    	if ( (state.backtracking==0) )
                     			    	{
@@ -5284,7 +5303,7 @@ public partial class SqlGenerator : TreeParser
                     			    	}
 
                     			    	Match(input, Token.DOWN, null); if (state.failed) return ;
-                    			    	PushFollow(FOLLOW_booleanExpr_in_caseExpr1874);
+                    			    	PushFollow(FOLLOW_booleanExpr_in_caseExpr1881);
                     			    	booleanExpr(false);
                     			    	state.followingStackPointer--;
                     			    	if (state.failed) return ;
@@ -5292,7 +5311,7 @@ public partial class SqlGenerator : TreeParser
                     			    	{
                     			    	   Out(" then "); 
                     			    	}
-                    			    	PushFollow(FOLLOW_expr_in_caseExpr1879);
+                    			    	PushFollow(FOLLOW_expr_in_caseExpr1886);
                     			    	expr();
                     			    	state.followingStackPointer--;
                     			    	if (state.failed) return ;
@@ -5328,7 +5347,7 @@ public partial class SqlGenerator : TreeParser
                     	    case 1 :
                     	        // SqlGenerator.g:335:5: ^( ELSE expr )
                     	        {
-                    	        	Match(input,ELSE,FOLLOW_ELSE_in_caseExpr1891); if (state.failed) return ;
+                    	        	Match(input,ELSE,FOLLOW_ELSE_in_caseExpr1898); if (state.failed) return ;
 
                     	        	if ( (state.backtracking==0) )
                     	        	{
@@ -5336,7 +5355,7 @@ public partial class SqlGenerator : TreeParser
                     	        	}
 
                     	        	Match(input, Token.DOWN, null); if (state.failed) return ;
-                    	        	PushFollow(FOLLOW_expr_in_caseExpr1895);
+                    	        	PushFollow(FOLLOW_expr_in_caseExpr1902);
                     	        	expr();
                     	        	state.followingStackPointer--;
                     	        	if (state.failed) return ;
@@ -5360,7 +5379,7 @@ public partial class SqlGenerator : TreeParser
                 case 2 :
                     // SqlGenerator.g:337:4: ^( CASE2 expr ( ^( WHEN expr expr ) )+ ( ^( ELSE expr ) )? )
                     {
-                    	Match(input,CASE2,FOLLOW_CASE2_in_caseExpr1911); if (state.failed) return ;
+                    	Match(input,CASE2,FOLLOW_CASE2_in_caseExpr1918); if (state.failed) return ;
 
                     	if ( (state.backtracking==0) )
                     	{
@@ -5368,7 +5387,7 @@ public partial class SqlGenerator : TreeParser
                     	}
 
                     	Match(input, Token.DOWN, null); if (state.failed) return ;
-                    	PushFollow(FOLLOW_expr_in_caseExpr1915);
+                    	PushFollow(FOLLOW_expr_in_caseExpr1922);
                     	expr();
                     	state.followingStackPointer--;
                     	if (state.failed) return ;
@@ -5390,7 +5409,7 @@ public partial class SqlGenerator : TreeParser
                     			case 1 :
                     			    // SqlGenerator.g:338:5: ^( WHEN expr expr )
                     			    {
-                    			    	Match(input,WHEN,FOLLOW_WHEN_in_caseExpr1922); if (state.failed) return ;
+                    			    	Match(input,WHEN,FOLLOW_WHEN_in_caseExpr1929); if (state.failed) return ;
 
                     			    	if ( (state.backtracking==0) )
                     			    	{
@@ -5398,7 +5417,7 @@ public partial class SqlGenerator : TreeParser
                     			    	}
 
                     			    	Match(input, Token.DOWN, null); if (state.failed) return ;
-                    			    	PushFollow(FOLLOW_expr_in_caseExpr1926);
+                    			    	PushFollow(FOLLOW_expr_in_caseExpr1933);
                     			    	expr();
                     			    	state.followingStackPointer--;
                     			    	if (state.failed) return ;
@@ -5406,7 +5425,7 @@ public partial class SqlGenerator : TreeParser
                     			    	{
                     			    	   Out(" then "); 
                     			    	}
-                    			    	PushFollow(FOLLOW_expr_in_caseExpr1930);
+                    			    	PushFollow(FOLLOW_expr_in_caseExpr1937);
                     			    	expr();
                     			    	state.followingStackPointer--;
                     			    	if (state.failed) return ;
@@ -5442,7 +5461,7 @@ public partial class SqlGenerator : TreeParser
                     	    case 1 :
                     	        // SqlGenerator.g:339:5: ^( ELSE expr )
                     	        {
-                    	        	Match(input,ELSE,FOLLOW_ELSE_in_caseExpr1942); if (state.failed) return ;
+                    	        	Match(input,ELSE,FOLLOW_ELSE_in_caseExpr1949); if (state.failed) return ;
 
                     	        	if ( (state.backtracking==0) )
                     	        	{
@@ -5450,7 +5469,7 @@ public partial class SqlGenerator : TreeParser
                     	        	}
 
                     	        	Match(input, Token.DOWN, null); if (state.failed) return ;
-                    	        	PushFollow(FOLLOW_expr_in_caseExpr1946);
+                    	        	PushFollow(FOLLOW_expr_in_caseExpr1953);
                     	        	expr();
                     	        	state.followingStackPointer--;
                     	        	if (state.failed) return ;
@@ -5498,7 +5517,7 @@ public partial class SqlGenerator : TreeParser
             // SqlGenerator.g:344:2: ( ^(a= AGGREGATE expr ) )
             // SqlGenerator.g:344:4: ^(a= AGGREGATE expr )
             {
-            	a=(IASTNode)Match(input,AGGREGATE,FOLLOW_AGGREGATE_in_aggregate1970); if (state.failed) return ;
+            	a=(IASTNode)Match(input,AGGREGATE,FOLLOW_AGGREGATE_in_aggregate1977); if (state.failed) return ;
 
             	if ( (state.backtracking==0) )
             	{
@@ -5506,7 +5525,7 @@ public partial class SqlGenerator : TreeParser
             	}
 
             	Match(input, Token.DOWN, null); if (state.failed) return ;
-            	PushFollow(FOLLOW_expr_in_aggregate1975);
+            	PushFollow(FOLLOW_expr_in_aggregate1982);
             	expr();
             	state.followingStackPointer--;
             	if (state.failed) return ;
@@ -5545,10 +5564,10 @@ public partial class SqlGenerator : TreeParser
             // SqlGenerator.g:349:2: ( ^(m= METHOD_CALL i= METHOD_NAME ( ^( EXPR_LIST ( arguments )? ) )? ) )
             // SqlGenerator.g:349:4: ^(m= METHOD_CALL i= METHOD_NAME ( ^( EXPR_LIST ( arguments )? ) )? )
             {
-            	m=(IASTNode)Match(input,METHOD_CALL,FOLLOW_METHOD_CALL_in_methodCall1994); if (state.failed) return ;
+            	m=(IASTNode)Match(input,METHOD_CALL,FOLLOW_METHOD_CALL_in_methodCall2001); if (state.failed) return ;
 
             	Match(input, Token.DOWN, null); if (state.failed) return ;
-            	i=(IASTNode)Match(input,METHOD_NAME,FOLLOW_METHOD_NAME_in_methodCall1998); if (state.failed) return ;
+            	i=(IASTNode)Match(input,METHOD_NAME,FOLLOW_METHOD_NAME_in_methodCall2005); if (state.failed) return ;
             	if ( (state.backtracking==0) )
             	{
             	   BeginFunctionTemplate(m,i); 
@@ -5566,7 +5585,7 @@ public partial class SqlGenerator : TreeParser
             	    case 1 :
             	        // SqlGenerator.g:350:5: ^( EXPR_LIST ( arguments )? )
             	        {
-            	        	Match(input,EXPR_LIST,FOLLOW_EXPR_LIST_in_methodCall2007); if (state.failed) return ;
+            	        	Match(input,EXPR_LIST,FOLLOW_EXPR_LIST_in_methodCall2014); if (state.failed) return ;
 
             	        	if ( input.LA(1) == Token.DOWN )
             	        	{
@@ -5584,7 +5603,7 @@ public partial class SqlGenerator : TreeParser
             	        	        case 1 :
             	        	            // SqlGenerator.g:350:18: arguments
             	        	            {
-            	        	            	PushFollow(FOLLOW_arguments_in_methodCall2010);
+            	        	            	PushFollow(FOLLOW_arguments_in_methodCall2017);
             	        	            	arguments();
             	        	            	state.followingStackPointer--;
             	        	            	if (state.failed) return ;
@@ -5660,7 +5679,7 @@ public partial class SqlGenerator : TreeParser
             	    case 1 :
             	        // SqlGenerator.g:355:5: expr
             	        {
-            	        	PushFollow(FOLLOW_expr_in_arguments2035);
+            	        	PushFollow(FOLLOW_expr_in_arguments2042);
             	        	expr();
             	        	state.followingStackPointer--;
             	        	if (state.failed) return ;
@@ -5670,7 +5689,7 @@ public partial class SqlGenerator : TreeParser
             	    case 2 :
             	        // SqlGenerator.g:355:12: comparisonExpr[true]
             	        {
-            	        	PushFollow(FOLLOW_comparisonExpr_in_arguments2039);
+            	        	PushFollow(FOLLOW_comparisonExpr_in_arguments2046);
             	        	comparisonExpr(true);
             	        	state.followingStackPointer--;
             	        	if (state.failed) return ;
@@ -5726,7 +5745,7 @@ public partial class SqlGenerator : TreeParser
             			    	    case 1 :
             			    	        // SqlGenerator.g:355:71: expr
             			    	        {
-            			    	        	PushFollow(FOLLOW_expr_in_arguments2048);
+            			    	        	PushFollow(FOLLOW_expr_in_arguments2055);
             			    	        	expr();
             			    	        	state.followingStackPointer--;
             			    	        	if (state.failed) return ;
@@ -5736,7 +5755,7 @@ public partial class SqlGenerator : TreeParser
             			    	    case 2 :
             			    	        // SqlGenerator.g:355:78: comparisonExpr[true]
             			    	        {
-            			    	        	PushFollow(FOLLOW_comparisonExpr_in_arguments2052);
+            			    	        	PushFollow(FOLLOW_comparisonExpr_in_arguments2059);
             			    	        	comparisonExpr(true);
             			    	        	state.followingStackPointer--;
             			    	        	if (state.failed) return ;
@@ -5809,7 +5828,7 @@ public partial class SqlGenerator : TreeParser
                 case 1 :
                     // SqlGenerator.g:359:4: n= NAMED_PARAM
                     {
-                    	n=(IASTNode)Match(input,NAMED_PARAM,FOLLOW_NAMED_PARAM_in_parameter2070); if (state.failed) return ;
+                    	n=(IASTNode)Match(input,NAMED_PARAM,FOLLOW_NAMED_PARAM_in_parameter2077); if (state.failed) return ;
                     	if ( (state.backtracking==0) )
                     	{
                     	   Out(n); 
@@ -5820,7 +5839,7 @@ public partial class SqlGenerator : TreeParser
                 case 2 :
                     // SqlGenerator.g:360:4: p= PARAM
                     {
-                    	p=(IASTNode)Match(input,PARAM,FOLLOW_PARAM_in_parameter2079); if (state.failed) return ;
+                    	p=(IASTNode)Match(input,PARAM,FOLLOW_PARAM_in_parameter2086); if (state.failed) return ;
                     	if ( (state.backtracking==0) )
                     	{
                     	   Out(p); 
@@ -5930,7 +5949,7 @@ public partial class SqlGenerator : TreeParser
                 case 1 :
                     // SqlGenerator.g:370:4: ^(r= DOT . . )
                     {
-                    	r=(IASTNode)Match(input,DOT,FOLLOW_DOT_in_addrExpr2116); if (state.failed) return ;
+                    	r=(IASTNode)Match(input,DOT,FOLLOW_DOT_in_addrExpr2123); if (state.failed) return ;
 
                     	Match(input, Token.DOWN, null); if (state.failed) return ;
                     	MatchAny(input); if (state.failed) return ;
@@ -5947,7 +5966,7 @@ public partial class SqlGenerator : TreeParser
                 case 2 :
                     // SqlGenerator.g:371:4: i= ALIAS_REF
                     {
-                    	i=(IASTNode)Match(input,ALIAS_REF,FOLLOW_ALIAS_REF_in_addrExpr2130); if (state.failed) return ;
+                    	i=(IASTNode)Match(input,ALIAS_REF,FOLLOW_ALIAS_REF_in_addrExpr2137); if (state.failed) return ;
                     	if ( (state.backtracking==0) )
                     	{
                     	   Out(i); 
@@ -5958,7 +5977,7 @@ public partial class SqlGenerator : TreeParser
                 case 3 :
                     // SqlGenerator.g:372:4: ^(j= INDEX_OP ( . )* )
                     {
-                    	j=(IASTNode)Match(input,INDEX_OP,FOLLOW_INDEX_OP_in_addrExpr2140); if (state.failed) return ;
+                    	j=(IASTNode)Match(input,INDEX_OP,FOLLOW_INDEX_OP_in_addrExpr2147); if (state.failed) return ;
 
                     	if ( input.LA(1) == Token.DOWN )
                     	{
@@ -6034,7 +6053,7 @@ public partial class SqlGenerator : TreeParser
             // SqlGenerator.g:376:2: ( ^(t= SQL_TOKEN ( . )* ) )
             // SqlGenerator.g:376:4: ^(t= SQL_TOKEN ( . )* )
             {
-            	t=(IASTNode)Match(input,SQL_TOKEN,FOLLOW_SQL_TOKEN_in_sqlToken2160); if (state.failed) return ;
+            	t=(IASTNode)Match(input,SQL_TOKEN,FOLLOW_SQL_TOKEN_in_sqlToken2167); if (state.failed) return ;
 
             	if ( (state.backtracking==0) )
             	{
@@ -6113,7 +6132,7 @@ public partial class SqlGenerator : TreeParser
         // SqlGenerator.g:321:4: ( additiveExpr )
         // SqlGenerator.g:321:5: additiveExpr
         {
-        	PushFollow(FOLLOW_additiveExpr_in_synpred2_SqlGenerator1790);
+        	PushFollow(FOLLOW_additiveExpr_in_synpred2_SqlGenerator1797);
         	additiveExpr();
         	state.followingStackPointer--;
         	if (state.failed) return ;
@@ -6127,7 +6146,7 @@ public partial class SqlGenerator : TreeParser
         // SqlGenerator.g:322:4: ( bitwiseExpr )
         // SqlGenerator.g:322:5: bitwiseExpr
         {
-        	PushFollow(FOLLOW_bitwiseExpr_in_synpred3_SqlGenerator1805);
+        	PushFollow(FOLLOW_bitwiseExpr_in_synpred3_SqlGenerator1812);
         	bitwiseExpr();
         	state.followingStackPointer--;
         	if (state.failed) return ;
@@ -6141,7 +6160,7 @@ public partial class SqlGenerator : TreeParser
         // SqlGenerator.g:328:4: ( arithmeticExpr )
         // SqlGenerator.g:328:5: arithmeticExpr
         {
-        	PushFollow(FOLLOW_arithmeticExpr_in_synpred4_SqlGenerator1834);
+        	PushFollow(FOLLOW_arithmeticExpr_in_synpred4_SqlGenerator1841);
         	arithmeticExpr();
         	state.followingStackPointer--;
         	if (state.failed) return ;
@@ -6887,61 +6906,61 @@ public partial class SqlGenerator : TreeParser
     public static readonly BitSet FOLLOW_expr_in_additiveExpr1682 = new BitSet(new ulong[]{0x0219208000109030UL,0x33FC041FD4024480UL,0x000000000020A000UL});
     public static readonly BitSet FOLLOW_nestedExprAfterMinusDiv_in_additiveExpr1686 = new BitSet(new ulong[]{0x0000000000000008UL});
     public static readonly BitSet FOLLOW_BAND_in_bitwiseExpr1699 = new BitSet(new ulong[]{0x0000000000000004UL});
-    public static readonly BitSet FOLLOW_expr_in_bitwiseExpr1701 = new BitSet(new ulong[]{0x0219208000109030UL,0x33FC041FD4024480UL,0x000000000020A000UL});
+    public static readonly BitSet FOLLOW_expr_in_bitwiseExpr1703 = new BitSet(new ulong[]{0x0219208000109030UL,0x33FC041FD4024480UL,0x000000000020A000UL});
     public static readonly BitSet FOLLOW_nestedExpr_in_bitwiseExpr1705 = new BitSet(new ulong[]{0x0000000000000008UL});
-    public static readonly BitSet FOLLOW_BOR_in_bitwiseExpr1712 = new BitSet(new ulong[]{0x0000000000000004UL});
-    public static readonly BitSet FOLLOW_expr_in_bitwiseExpr1714 = new BitSet(new ulong[]{0x0219208000109030UL,0x33FC041FD4024480UL,0x000000000020A000UL});
-    public static readonly BitSet FOLLOW_nestedExpr_in_bitwiseExpr1718 = new BitSet(new ulong[]{0x0000000000000008UL});
-    public static readonly BitSet FOLLOW_BXOR_in_bitwiseExpr1725 = new BitSet(new ulong[]{0x0000000000000004UL});
-    public static readonly BitSet FOLLOW_expr_in_bitwiseExpr1727 = new BitSet(new ulong[]{0x0219208000109030UL,0x33FC041FD4024480UL,0x000000000020A000UL});
-    public static readonly BitSet FOLLOW_nestedExpr_in_bitwiseExpr1731 = new BitSet(new ulong[]{0x0000000000000008UL});
-    public static readonly BitSet FOLLOW_BNOT_in_bitwiseExpr1738 = new BitSet(new ulong[]{0x0000000000000004UL});
-    public static readonly BitSet FOLLOW_nestedExpr_in_bitwiseExpr1742 = new BitSet(new ulong[]{0x0000000000000008UL});
-    public static readonly BitSet FOLLOW_STAR_in_multiplicativeExpr1756 = new BitSet(new ulong[]{0x0000000000000004UL});
-    public static readonly BitSet FOLLOW_nestedExpr_in_multiplicativeExpr1758 = new BitSet(new ulong[]{0x0219208000109030UL,0x33FC041FD4024480UL,0x000000000020A000UL});
-    public static readonly BitSet FOLLOW_nestedExpr_in_multiplicativeExpr1762 = new BitSet(new ulong[]{0x0000000000000008UL});
-    public static readonly BitSet FOLLOW_DIV_in_multiplicativeExpr1769 = new BitSet(new ulong[]{0x0000000000000004UL});
-    public static readonly BitSet FOLLOW_nestedExpr_in_multiplicativeExpr1771 = new BitSet(new ulong[]{0x0219208000109030UL,0x33FC041FD4024480UL,0x000000000020A000UL});
-    public static readonly BitSet FOLLOW_nestedExprAfterMinusDiv_in_multiplicativeExpr1775 = new BitSet(new ulong[]{0x0000000000000008UL});
-    public static readonly BitSet FOLLOW_additiveExpr_in_nestedExpr1797 = new BitSet(new ulong[]{0x0000000000000002UL});
-    public static readonly BitSet FOLLOW_bitwiseExpr_in_nestedExpr1812 = new BitSet(new ulong[]{0x0000000000000002UL});
-    public static readonly BitSet FOLLOW_expr_in_nestedExpr1819 = new BitSet(new ulong[]{0x0000000000000002UL});
-    public static readonly BitSet FOLLOW_arithmeticExpr_in_nestedExprAfterMinusDiv1841 = new BitSet(new ulong[]{0x0000000000000002UL});
-    public static readonly BitSet FOLLOW_expr_in_nestedExprAfterMinusDiv1848 = new BitSet(new ulong[]{0x0000000000000002UL});
-    public static readonly BitSet FOLLOW_CASE_in_caseExpr1860 = new BitSet(new ulong[]{0x0000000000000004UL});
-    public static readonly BitSet FOLLOW_WHEN_in_caseExpr1870 = new BitSet(new ulong[]{0x0000000000000004UL});
-    public static readonly BitSet FOLLOW_booleanExpr_in_caseExpr1874 = new BitSet(new ulong[]{0x0219208000109030UL,0x33FC041FD4024480UL,0x000000000020A000UL});
-    public static readonly BitSet FOLLOW_expr_in_caseExpr1879 = new BitSet(new ulong[]{0x0000000000000008UL});
-    public static readonly BitSet FOLLOW_ELSE_in_caseExpr1891 = new BitSet(new ulong[]{0x0000000000000004UL});
-    public static readonly BitSet FOLLOW_expr_in_caseExpr1895 = new BitSet(new ulong[]{0x0000000000000008UL});
-    public static readonly BitSet FOLLOW_CASE2_in_caseExpr1911 = new BitSet(new ulong[]{0x0000000000000004UL});
-    public static readonly BitSet FOLLOW_expr_in_caseExpr1915 = new BitSet(new ulong[]{0x2000000000000000UL});
-    public static readonly BitSet FOLLOW_WHEN_in_caseExpr1922 = new BitSet(new ulong[]{0x0000000000000004UL});
-    public static readonly BitSet FOLLOW_expr_in_caseExpr1926 = new BitSet(new ulong[]{0x0219208000109030UL,0x33FC041FD4024480UL,0x000000000020A000UL});
-    public static readonly BitSet FOLLOW_expr_in_caseExpr1930 = new BitSet(new ulong[]{0x0000000000000008UL});
-    public static readonly BitSet FOLLOW_ELSE_in_caseExpr1942 = new BitSet(new ulong[]{0x0000000000000004UL});
-    public static readonly BitSet FOLLOW_expr_in_caseExpr1946 = new BitSet(new ulong[]{0x0000000000000008UL});
-    public static readonly BitSet FOLLOW_AGGREGATE_in_aggregate1970 = new BitSet(new ulong[]{0x0000000000000004UL});
-    public static readonly BitSet FOLLOW_expr_in_aggregate1975 = new BitSet(new ulong[]{0x0000000000000008UL});
-    public static readonly BitSet FOLLOW_METHOD_CALL_in_methodCall1994 = new BitSet(new ulong[]{0x0000000000000004UL});
-    public static readonly BitSet FOLLOW_METHOD_NAME_in_methodCall1998 = new BitSet(new ulong[]{0x0000000000000008UL,0x0000000000000800UL});
-    public static readonly BitSet FOLLOW_EXPR_LIST_in_methodCall2007 = new BitSet(new ulong[]{0x0000000000000004UL});
-    public static readonly BitSet FOLLOW_arguments_in_methodCall2010 = new BitSet(new ulong[]{0x0000000000000008UL});
-    public static readonly BitSet FOLLOW_expr_in_arguments2035 = new BitSet(new ulong[]{0x0219208404189432UL,0x33FDEC5FD41FC480UL,0x000000000020A000UL});
-    public static readonly BitSet FOLLOW_comparisonExpr_in_arguments2039 = new BitSet(new ulong[]{0x0219208404189432UL,0x33FDEC5FD41FC480UL,0x000000000020A000UL});
-    public static readonly BitSet FOLLOW_expr_in_arguments2048 = new BitSet(new ulong[]{0x0219208404189432UL,0x33FDEC5FD41FC480UL,0x000000000020A000UL});
-    public static readonly BitSet FOLLOW_comparisonExpr_in_arguments2052 = new BitSet(new ulong[]{0x0219208404189432UL,0x33FDEC5FD41FC480UL,0x000000000020A000UL});
-    public static readonly BitSet FOLLOW_NAMED_PARAM_in_parameter2070 = new BitSet(new ulong[]{0x0000000000000002UL});
-    public static readonly BitSet FOLLOW_PARAM_in_parameter2079 = new BitSet(new ulong[]{0x0000000000000002UL});
+    public static readonly BitSet FOLLOW_BOR_in_bitwiseExpr1714 = new BitSet(new ulong[]{0x0000000000000004UL});
+    public static readonly BitSet FOLLOW_expr_in_bitwiseExpr1718 = new BitSet(new ulong[]{0x0219208000109030UL,0x33FC041FD4024480UL,0x000000000020A000UL});
+    public static readonly BitSet FOLLOW_nestedExpr_in_bitwiseExpr1720 = new BitSet(new ulong[]{0x0000000000000008UL});
+    public static readonly BitSet FOLLOW_BXOR_in_bitwiseExpr1729 = new BitSet(new ulong[]{0x0000000000000004UL});
+    public static readonly BitSet FOLLOW_expr_in_bitwiseExpr1733 = new BitSet(new ulong[]{0x0219208000109030UL,0x33FC041FD4024480UL,0x000000000020A000UL});
+    public static readonly BitSet FOLLOW_nestedExpr_in_bitwiseExpr1735 = new BitSet(new ulong[]{0x0000000000000008UL});
+    public static readonly BitSet FOLLOW_BNOT_in_bitwiseExpr1744 = new BitSet(new ulong[]{0x0000000000000004UL});
+    public static readonly BitSet FOLLOW_nestedExpr_in_bitwiseExpr1748 = new BitSet(new ulong[]{0x0000000000000008UL});
+    public static readonly BitSet FOLLOW_STAR_in_multiplicativeExpr1763 = new BitSet(new ulong[]{0x0000000000000004UL});
+    public static readonly BitSet FOLLOW_nestedExpr_in_multiplicativeExpr1765 = new BitSet(new ulong[]{0x0219208000109030UL,0x33FC041FD4024480UL,0x000000000020A000UL});
+    public static readonly BitSet FOLLOW_nestedExpr_in_multiplicativeExpr1769 = new BitSet(new ulong[]{0x0000000000000008UL});
+    public static readonly BitSet FOLLOW_DIV_in_multiplicativeExpr1776 = new BitSet(new ulong[]{0x0000000000000004UL});
+    public static readonly BitSet FOLLOW_nestedExpr_in_multiplicativeExpr1778 = new BitSet(new ulong[]{0x0219208000109030UL,0x33FC041FD4024480UL,0x000000000020A000UL});
+    public static readonly BitSet FOLLOW_nestedExprAfterMinusDiv_in_multiplicativeExpr1782 = new BitSet(new ulong[]{0x0000000000000008UL});
+    public static readonly BitSet FOLLOW_additiveExpr_in_nestedExpr1804 = new BitSet(new ulong[]{0x0000000000000002UL});
+    public static readonly BitSet FOLLOW_bitwiseExpr_in_nestedExpr1819 = new BitSet(new ulong[]{0x0000000000000002UL});
+    public static readonly BitSet FOLLOW_expr_in_nestedExpr1826 = new BitSet(new ulong[]{0x0000000000000002UL});
+    public static readonly BitSet FOLLOW_arithmeticExpr_in_nestedExprAfterMinusDiv1848 = new BitSet(new ulong[]{0x0000000000000002UL});
+    public static readonly BitSet FOLLOW_expr_in_nestedExprAfterMinusDiv1855 = new BitSet(new ulong[]{0x0000000000000002UL});
+    public static readonly BitSet FOLLOW_CASE_in_caseExpr1867 = new BitSet(new ulong[]{0x0000000000000004UL});
+    public static readonly BitSet FOLLOW_WHEN_in_caseExpr1877 = new BitSet(new ulong[]{0x0000000000000004UL});
+    public static readonly BitSet FOLLOW_booleanExpr_in_caseExpr1881 = new BitSet(new ulong[]{0x0219208000109030UL,0x33FC041FD4024480UL,0x000000000020A000UL});
+    public static readonly BitSet FOLLOW_expr_in_caseExpr1886 = new BitSet(new ulong[]{0x0000000000000008UL});
+    public static readonly BitSet FOLLOW_ELSE_in_caseExpr1898 = new BitSet(new ulong[]{0x0000000000000004UL});
+    public static readonly BitSet FOLLOW_expr_in_caseExpr1902 = new BitSet(new ulong[]{0x0000000000000008UL});
+    public static readonly BitSet FOLLOW_CASE2_in_caseExpr1918 = new BitSet(new ulong[]{0x0000000000000004UL});
+    public static readonly BitSet FOLLOW_expr_in_caseExpr1922 = new BitSet(new ulong[]{0x2000000000000000UL});
+    public static readonly BitSet FOLLOW_WHEN_in_caseExpr1929 = new BitSet(new ulong[]{0x0000000000000004UL});
+    public static readonly BitSet FOLLOW_expr_in_caseExpr1933 = new BitSet(new ulong[]{0x0219208000109030UL,0x33FC041FD4024480UL,0x000000000020A000UL});
+    public static readonly BitSet FOLLOW_expr_in_caseExpr1937 = new BitSet(new ulong[]{0x0000000000000008UL});
+    public static readonly BitSet FOLLOW_ELSE_in_caseExpr1949 = new BitSet(new ulong[]{0x0000000000000004UL});
+    public static readonly BitSet FOLLOW_expr_in_caseExpr1953 = new BitSet(new ulong[]{0x0000000000000008UL});
+    public static readonly BitSet FOLLOW_AGGREGATE_in_aggregate1977 = new BitSet(new ulong[]{0x0000000000000004UL});
+    public static readonly BitSet FOLLOW_expr_in_aggregate1982 = new BitSet(new ulong[]{0x0000000000000008UL});
+    public static readonly BitSet FOLLOW_METHOD_CALL_in_methodCall2001 = new BitSet(new ulong[]{0x0000000000000004UL});
+    public static readonly BitSet FOLLOW_METHOD_NAME_in_methodCall2005 = new BitSet(new ulong[]{0x0000000000000008UL,0x0000000000000800UL});
+    public static readonly BitSet FOLLOW_EXPR_LIST_in_methodCall2014 = new BitSet(new ulong[]{0x0000000000000004UL});
+    public static readonly BitSet FOLLOW_arguments_in_methodCall2017 = new BitSet(new ulong[]{0x0000000000000008UL});
+    public static readonly BitSet FOLLOW_expr_in_arguments2042 = new BitSet(new ulong[]{0x0219208404189432UL,0x33FDEC5FD41FC480UL,0x000000000020A000UL});
+    public static readonly BitSet FOLLOW_comparisonExpr_in_arguments2046 = new BitSet(new ulong[]{0x0219208404189432UL,0x33FDEC5FD41FC480UL,0x000000000020A000UL});
+    public static readonly BitSet FOLLOW_expr_in_arguments2055 = new BitSet(new ulong[]{0x0219208404189432UL,0x33FDEC5FD41FC480UL,0x000000000020A000UL});
+    public static readonly BitSet FOLLOW_comparisonExpr_in_arguments2059 = new BitSet(new ulong[]{0x0219208404189432UL,0x33FDEC5FD41FC480UL,0x000000000020A000UL});
+    public static readonly BitSet FOLLOW_NAMED_PARAM_in_parameter2077 = new BitSet(new ulong[]{0x0000000000000002UL});
+    public static readonly BitSet FOLLOW_PARAM_in_parameter2086 = new BitSet(new ulong[]{0x0000000000000002UL});
     public static readonly BitSet FOLLOW_set_in_limitValue0 = new BitSet(new ulong[]{0x0000000000000002UL});
-    public static readonly BitSet FOLLOW_DOT_in_addrExpr2116 = new BitSet(new ulong[]{0x0000000000000004UL});
-    public static readonly BitSet FOLLOW_ALIAS_REF_in_addrExpr2130 = new BitSet(new ulong[]{0x0000000000000002UL});
-    public static readonly BitSet FOLLOW_INDEX_OP_in_addrExpr2140 = new BitSet(new ulong[]{0x0000000000000004UL});
-    public static readonly BitSet FOLLOW_SQL_TOKEN_in_sqlToken2160 = new BitSet(new ulong[]{0x0000000000000004UL});
+    public static readonly BitSet FOLLOW_DOT_in_addrExpr2123 = new BitSet(new ulong[]{0x0000000000000004UL});
+    public static readonly BitSet FOLLOW_ALIAS_REF_in_addrExpr2137 = new BitSet(new ulong[]{0x0000000000000002UL});
+    public static readonly BitSet FOLLOW_INDEX_OP_in_addrExpr2147 = new BitSet(new ulong[]{0x0000000000000004UL});
+    public static readonly BitSet FOLLOW_SQL_TOKEN_in_sqlToken2167 = new BitSet(new ulong[]{0x0000000000000004UL});
     public static readonly BitSet FOLLOW_SQL_TOKEN_in_synpred1_SqlGenerator366 = new BitSet(new ulong[]{0x0000000000000002UL});
-    public static readonly BitSet FOLLOW_additiveExpr_in_synpred2_SqlGenerator1790 = new BitSet(new ulong[]{0x0000000000000002UL});
-    public static readonly BitSet FOLLOW_bitwiseExpr_in_synpred3_SqlGenerator1805 = new BitSet(new ulong[]{0x0000000000000002UL});
-    public static readonly BitSet FOLLOW_arithmeticExpr_in_synpred4_SqlGenerator1834 = new BitSet(new ulong[]{0x0000000000000002UL});
+    public static readonly BitSet FOLLOW_additiveExpr_in_synpred2_SqlGenerator1797 = new BitSet(new ulong[]{0x0000000000000002UL});
+    public static readonly BitSet FOLLOW_bitwiseExpr_in_synpred3_SqlGenerator1812 = new BitSet(new ulong[]{0x0000000000000002UL});
+    public static readonly BitSet FOLLOW_arithmeticExpr_in_synpred4_SqlGenerator1841 = new BitSet(new ulong[]{0x0000000000000002UL});
 
 }
 }

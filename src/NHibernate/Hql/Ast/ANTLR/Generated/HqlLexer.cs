@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 Hql.g 2011-05-22 07:45:50
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 Hql.g 2014-07-05 12:15:51
 
 // The variable 'variable' is assigned but its value is never used.
 #pragma warning disable 168, 219
@@ -19,8 +19,8 @@ namespace  NHibernate.Hql.Ast.ANTLR
 public partial class HqlLexer : Lexer {
     public const int LT = 109;
     public const int EXPONENT = 130;
-    public const int STAR = 120;
     public const int FLOAT_SUFFIX = 131;
+    public const int STAR = 120;
     public const int LITERAL_by = 56;
     public const int CASE = 57;
     public const int NEW = 37;
