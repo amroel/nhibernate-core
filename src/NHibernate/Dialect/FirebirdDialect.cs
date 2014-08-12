@@ -322,6 +322,7 @@ namespace NHibernate.Dialect
 			RegisterFunction("str", new SQLFunctionTemplate(NHibernateUtil.String, "cast(?1 as VARCHAR(255))"));
 			RegisterFunction("sysdate", new CastedFunction("today", NHibernateUtil.Date));
 			RegisterFunction("date", new SQLFunctionTemplate(NHibernateUtil.Date, "cast(?1 as date)"));
+
 			// Bitwise operations
 			RegisterFunction("band", new BitwiseFunctionOperation("bin_and"));
 			RegisterFunction("bor", new BitwiseFunctionOperation("bin_or"));
