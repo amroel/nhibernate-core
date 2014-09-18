@@ -323,6 +323,12 @@
     <Compile Include="Linq\Visitors\SubQueryFromClauseFlattener.cs" />
     <Compile Include="Linq\Visitors\VisitorUtil.cs" />
     <Compile Include="Linq\Visitors\WhereJoinDetector.cs" />
+    <Compile Include="Linq_NEW\LinqExtensionMethods.cs" />
+    <Compile Include="Linq_NEW\LinqQuery.cs" />
+    <Compile Include="Linq_NEW\QueryProvider.cs" />
+    <Compile Include="Linq_NEW\QueryTranslator.cs" />
+    <Compile Include="Linq_NEW\SessionImplementorQueryProvider.cs" />
+    <Compile Include="Linq_NEW\TypedSubtreeFinder.cs" />
     <Compile Include="Loader\TopologicalSorter.cs" />
     <Compile Include="Loader\Loader.cs" />
     <Compile Include="Loader\OuterJoinLoader.cs" />
