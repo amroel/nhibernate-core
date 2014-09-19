@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using NUnit.Framework;
 using SharpTestsEx;
 
@@ -13,10 +10,7 @@ namespace NHibernate.Test.Linq_NEW.EndToEnd
 		[Test]
 		public void SimplestPossible()
 		{
-			var actual = from user in db.Users
-						 select user;
-
-			actual.ToList().Should().Have.Count.EqualTo(3);
+			db.Users.ToList().Should().Have.Count.EqualTo(3);
 		}
 	}
 }
