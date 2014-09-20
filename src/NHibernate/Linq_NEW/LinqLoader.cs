@@ -94,7 +94,7 @@ namespace NHibernate.Linq_NEW
 
 						if (index >= 0)
 						{
-							FieldInfo fi = _fields[i];
+							var fi = _fields[i];
 							if (_dataReader.IsDBNull(index))
 							{
 								fi.SetValue(instance, null);
