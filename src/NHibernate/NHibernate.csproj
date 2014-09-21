@@ -327,7 +327,7 @@
     <Compile Include="Linq_NEW\LinqQuery.cs" />
     <Compile Include="Linq_NEW\LinqLoader.cs" />
     <Compile Include="Linq_NEW\QueryProvider.cs" />
-    <Compile Include="Linq_NEW\QueryTranslator.cs" />
+    <Compile Include="Linq_NEW\LinqQueryToSqlTranslator.cs" />
     <Compile Include="Linq_NEW\SessionImplementorQueryProvider.cs" />
     <Compile Include="Linq_NEW\TranslationResult.cs" />
     <Compile Include="Loader\TopologicalSorter.cs" />

@@ -27,7 +27,7 @@ namespace NHibernate.Linq_NEW
 
 		private TranslationResult Translate(Expression expression)
 		{
-			return new QueryTranslator(_session).Translate(expression);
+			return new LinqQueryToSqlTranslator(_session).Translate(expression);
 		}
 	}
 }
