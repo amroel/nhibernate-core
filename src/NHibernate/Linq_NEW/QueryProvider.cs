@@ -37,15 +37,5 @@ namespace NHibernate.Linq_NEW
 		public abstract object Execute(Expression expression);
 
 		#endregion
-
-		public virtual Task<object> ExecuteAsync(Expression expression)
-		{
-			return Task.Factory.StartNew(() => Execute(expression));
-		}
-
-		public virtual Task<TResult> ExecuteAsync<TResult>(Expression expression)
-		{
-			return Task.Factory.StartNew<TResult>(() => (TResult)Execute(expression));
-		}
 	}
 }

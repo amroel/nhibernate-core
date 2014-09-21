@@ -553,7 +553,7 @@
     <Compile Include="Linq_NEW\EndToEnd\LinqReadonlyTestsContext.cs" />
     <Compile Include="Linq_NEW\EndToEnd\LinqTestCase.cs" />
     <Compile Include="Linq_NEW\EndToEnd\Northwind.cs" />
-    <Compile Include="Linq_NEW\EndToEnd\QueryingOneEntity.cs" />
+    <Compile Include="Linq_NEW\EndToEnd\QueryingSingleSimpleEntity.cs" />
     <Compile Include="Logging\Log4NetLoggerTest.cs" />
     <Compile Include="Logging\LoggerProviderTest.cs" />
     <Compile Include="MappingByCode\ConventionModelMapperTests\ComponetsAccessorTests.cs" />
