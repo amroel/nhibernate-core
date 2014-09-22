@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 using NHibernate.Engine;
 using NHibernate.Mapping.ByCode;
 
-namespace NHibernate.Linq_NEW
+namespace NHibernate.LinqToSql
 {
 	public class SessionImplementorQueryProvider : QueryProvider
 	{

@@ -1,7 +1,7 @@
 using NHibernate.SqlCommand;
 using NHibernate.SqlTypes;
 
-namespace NHibernate.Linq_NEW
+namespace NHibernate.LinqToSql
 {
 	public class TranslationResult
 	{

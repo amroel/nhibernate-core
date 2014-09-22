@@ -6,7 +6,7 @@ using NHibernate.Impl;
 using Remotion.Linq;
 using Remotion.Linq.Parsing.ExpressionTreeVisitors;
 
-namespace NHibernate.Linq_NEW
+namespace NHibernate.LinqToSql
 {
 	public static class LinqExtensionMethods
 	{

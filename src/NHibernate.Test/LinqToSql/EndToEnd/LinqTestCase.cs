@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using SharpTestsEx;
 
-namespace NHibernate.Test.Linq_NEW.EndToEnd
+namespace NHibernate.Test.LinqToSql.EndToEnd
 {
 	public abstract class LinqTestCase : TestCaseMappingByCode
 	{

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace NHibernate.Linq_NEW
+namespace NHibernate.LinqToSql
 {
 	public class LinqQuery<T> : IOrderedQueryable<T>
 	{

@@ -550,10 +550,10 @@
     <Compile Include="LinqToHql\ReadonlyTestCase.cs" />
     <Compile Include="LinqToHql\StatelessSessionQueringTest.cs" />
     <Compile Include="LinqToHql\ByMethod\SumTests.cs" />
-    <Compile Include="Linq_NEW\EndToEnd\LinqReadonlyTestsContext.cs" />
-    <Compile Include="Linq_NEW\EndToEnd\LinqTestCase.cs" />
-    <Compile Include="Linq_NEW\EndToEnd\Northwind.cs" />
-    <Compile Include="Linq_NEW\EndToEnd\QueryingSingleSimpleEntity.cs" />
+    <Compile Include="LinqToSql\EndToEnd\LinqReadonlyTestsContext.cs" />
+    <Compile Include="LinqToSql\EndToEnd\LinqTestCase.cs" />
+    <Compile Include="LinqToSql\EndToEnd\Northwind.cs" />
+    <Compile Include="LinqToSql\EndToEnd\QueryingSingleSimpleEntity.cs" />
     <Compile Include="Logging\Log4NetLoggerTest.cs" />
     <Compile Include="Logging\LoggerProviderTest.cs" />
     <Compile Include="MappingByCode\ConventionModelMapperTests\ComponetsAccessorTests.cs" />

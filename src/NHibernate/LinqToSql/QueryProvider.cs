@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using NHibernate.Mapping.ByCode;
 
-namespace NHibernate.Linq_NEW
+namespace NHibernate.LinqToSql
 {
 	public abstract class QueryProvider : IQueryProvider
 	{

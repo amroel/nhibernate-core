@@ -2,9 +2,9 @@
 using System.Linq;
 using NHibernate.DomainModel.Northwind.Entities;
 using NHibernate.LinqToHql;
-using NHibernate.Linq_NEW;
+using NHibernate.LinqToSql;
 
-namespace NHibernate.Test.Linq_NEW.EndToEnd
+namespace NHibernate.Test.LinqToSql.EndToEnd
 {
     public class Northwind
     {

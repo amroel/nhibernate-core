@@ -9,7 +9,7 @@ using NHibernate.Test.LinqToHql;
 using NHibernate.Tool.hbm2ddl;
 using NUnit.Framework;
 
-namespace NHibernate.Test.Linq_NEW.EndToEnd
+namespace NHibernate.Test.LinqToSql.EndToEnd
 {
 	[SetUpFixture]
 	public class LinqReadonlyTestsContext

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Reflection;
 
-namespace NHibernate.Linq_NEW
+namespace NHibernate.LinqToSql
 {
 	public class LinqLoader<T> : IEnumerable<T> where T : class, new()
 	{

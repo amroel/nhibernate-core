@@ -6,7 +6,7 @@ using NHibernate.Engine;
 using NHibernate.Hql.Ast.ANTLR;
 using NHibernate.SqlCommand;
 
-namespace NHibernate.Linq_NEW
+namespace NHibernate.LinqToSql
 {
 	public class LinqQueryToSqlTranslator : ExpressionVisitor
 	{
