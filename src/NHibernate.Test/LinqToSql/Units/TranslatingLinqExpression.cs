@@ -29,6 +29,7 @@ namespace NHibernate.Test.LinqToSql.Units
 		{
 			var metaDataRepository = new FakeMetaDataRepository();
 			metaDataRepository.AddTableMapFor<SimpleEntity>("simple_entities");
+
 			var translator = new LinqQueryToSqlTranslator(metaDataRepository);
 
 			Assert.Throws<NotSupportedException>(() => translator.Translate(Expression.Constant(new SimpleEntity())));

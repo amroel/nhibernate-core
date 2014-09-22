@@ -43,12 +43,12 @@ namespace NHibernate.LinqToSql
 			private readonly IDataReader _dataReader;
             private T _current;
 			private int[] _fieldLookup;
-			private readonly FieldInfo[] _fields;
+			private readonly PropertyInfo[] _fields;
 
 			public Enumerator(IDataReader dataReader)
 			{
 				_dataReader = dataReader;
-				_fields = typeof(T).GetFields();
+				_fields = typeof(T).GetProperties();
 			}
 
 			#region IEnumerator<T> Members
@@ -96,11 +96,11 @@ namespace NHibernate.LinqToSql
 							var fi = _fields[i];
 							if (_dataReader.IsDBNull(index))
 							{
-								fi.SetValue(instance, null);
+								fi.SetValue(instance, null, null);
 							}
 							else
 							{
-								fi.SetValue(instance, _dataReader.GetValue(index));
+								fi.SetValue(instance, _dataReader.GetValue(index), null);
 							}
 						}
 					}

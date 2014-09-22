@@ -8,22 +8,22 @@ using SharpTestsEx;
 namespace NHibernate.Test.LinqToSql.EndToEnd
 {
 	[TestFixture]
-	public class QueryingSingleSimpleEntity : TestCaseMappingByCode
+	public class QueryingSingleEntityWithMappedUserType : TestCaseMappingByCode
 	{
 		[Test]
-		public void WithSimpleProperties()
+		public void WithUserTypeProperties()
 		{
-			var entity = new SimpleEntity { Id = 1, Simple = 1 };
+			var entity = new SimpleUserTypeEntity { Id = 1, SillyType = new MySillyType { MyValue = 1 } };
 			Persist(entity);
 			try
 			{
 				using (var session = sessions.OpenSession())
 				{
-					var qry = session.Query<SimpleEntity>();
+					var qry = session.Query<SimpleUserTypeEntity>();
 					var result = qry.ToList();
 					result.Should().Have.Count.EqualTo(1);
 					result[0].Id.Should().Be(1);
-					result[0].Simple.Should().Be(1);
+					result[0].SillyType.Should().Be(new MySillyType { MyValue = 1 });
 				}
 			}
 			finally
@@ -35,16 +35,16 @@ namespace NHibernate.Test.LinqToSql.EndToEnd
 		protected override HbmMapping GetMappings()
 		{
 			var mapper = new ModelMapper();
-			mapper.Class<SimpleEntity>(map =>
+			mapper.Class<SimpleUserTypeEntity>(map =>
 			{
 				map.Id(simple => simple.Id, idMap => idMap.Generator(Generators.Assigned));
-				map.Property(entity => entity.Simple);
+				map.Property(entity => entity.SillyType, m => m.Type<MySillyUserType>());
 			});
 
 			return mapper.CompileMappingForAllExplicitlyAddedEntities();
 		}
 
-		private void Persist(SimpleEntity entity)
+		private void Persist(SimpleUserTypeEntity entity)
 		{
 			using (var session = sessions.OpenSession())
 			{
@@ -57,7 +57,7 @@ namespace NHibernate.Test.LinqToSql.EndToEnd
 			}
 		}
 
-		private void Delete(SimpleEntity entity)
+		private void Delete(SimpleUserTypeEntity entity)
 		{
 			using (var session = sessions.OpenSession())
 			{
