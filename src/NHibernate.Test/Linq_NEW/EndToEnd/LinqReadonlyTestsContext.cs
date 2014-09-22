@@ -5,7 +5,7 @@ using System.Linq;
 using System.Reflection;
 using NHibernate.Cfg;
 using NHibernate.Connection;
-using NHibernate.Test.Linq;
+using NHibernate.Test.LinqToHql;
 using NHibernate.Tool.hbm2ddl;
 using NUnit.Framework;
 

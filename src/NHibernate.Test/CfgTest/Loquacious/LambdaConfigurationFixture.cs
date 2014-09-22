@@ -5,7 +5,7 @@ using NHibernate.Cfg;
 using NHibernate.Dialect;
 using NHibernate.Driver;
 using NHibernate.Hql.Ast.ANTLR;
-using NHibernate.Linq.Functions;
+using NHibernate.LinqToHql.Functions;
 using NHibernate.Type;
 using NUnit.Framework;
 using System.Data;

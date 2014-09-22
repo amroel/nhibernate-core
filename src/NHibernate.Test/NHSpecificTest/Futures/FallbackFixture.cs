@@ -4,7 +4,7 @@ using NHibernate.Connection;
 using NHibernate.Criterion;
 using NHibernate.Dialect;
 using NHibernate.Driver;
-using NHibernate.Linq;
+using NHibernate.LinqToHql;
 using NUnit.Framework;
 
 using Environment=NHibernate.Cfg.Environment;

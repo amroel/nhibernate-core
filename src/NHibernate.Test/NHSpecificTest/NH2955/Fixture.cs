@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using NUnit.Framework;
-using NHibernate.Linq;
+using NHibernate.LinqToHql;
 
 namespace NHibernate.Test.NHSpecificTest.NH2955
 {

@@ -1,5 +1,5 @@
 using NHibernate.Cfg;
-using NHibernate.Linq;
+using NHibernate.LinqToHql;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;

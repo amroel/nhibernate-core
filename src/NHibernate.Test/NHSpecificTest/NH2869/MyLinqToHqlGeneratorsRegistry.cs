@@ -1,5 +1,5 @@
-using NHibernate.Linq;
-using NHibernate.Linq.Functions;
+using NHibernate.LinqToHql;
+using NHibernate.LinqToHql.Functions;
 
 namespace NHibernate.Test.NHSpecificTest.NH2869
 {

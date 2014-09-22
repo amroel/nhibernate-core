@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using NHibernate.Linq;
+using NHibernate.LinqToHql;
 
 namespace NHibernate.DomainModel.Northwind.Entities
 {

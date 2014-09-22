@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using NHibernate.Hql;
-using NHibernate.Linq;
+using NHibernate.LinqToHql;
 
 namespace NHibernate.Engine.Query
 {

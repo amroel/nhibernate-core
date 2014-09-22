@@ -5,7 +5,7 @@ using System.Globalization;
 using System.Linq;
 using NHibernate.Criterion;
 using NHibernate.DomainModel.NHSpecific;
-using NHibernate.Linq;
+using NHibernate.LinqToHql;
 using NUnit.Framework;
 
 namespace NHibernate.Test.NHSpecificTest

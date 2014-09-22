@@ -3,7 +3,7 @@ using System.Collections;
 using System.Linq;
 using NUnit.Framework;
 using NHibernate;
-using NHibernate.Linq;
+using NHibernate.LinqToHql;
 
 namespace NHibernate.Test.NHSpecificTest.NH2760
 {

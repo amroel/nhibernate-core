@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using NHibernate.Engine.Query.Sql;
 using NHibernate.Hql;
-using NHibernate.Linq;
+using NHibernate.LinqToHql;
 using NHibernate.Util;
 
 namespace NHibernate.Engine.Query

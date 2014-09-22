@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using NHibernate.Cfg.MappingSchema;
-using NHibernate.Linq;
+using NHibernate.LinqToHql;
 using NHibernate.Mapping.ByCode;
 using NUnit.Framework;
 

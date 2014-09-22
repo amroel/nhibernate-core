@@ -1,4 +1,4 @@
-﻿Imports NHibernate.Linq
+﻿Imports NHibernate.LinqToHql
 Imports NUnit.Framework
 
 Namespace Issues.NH2966

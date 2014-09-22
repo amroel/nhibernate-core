@@ -4,7 +4,7 @@ using System.Xml.Linq;
 using NHibernate.Cfg;
 using NHibernate.Cfg.MappingSchema;
 using NHibernate.Dialect;
-using NHibernate.Linq;
+using NHibernate.LinqToHql;
 using NHibernate.Mapping.ByCode;
 using NHibernate.Type;
 using NUnit.Framework;

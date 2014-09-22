@@ -6,9 +6,9 @@ using System.Linq.Expressions;
 using System.Reflection;
 using System.Text;
 using NHibernate.Hql.Ast;
-using NHibernate.Linq;
-using NHibernate.Linq.Functions;
-using NHibernate.Linq.Visitors;
+using NHibernate.LinqToHql;
+using NHibernate.LinqToHql.Functions;
+using NHibernate.LinqToHql.Visitors;
 
 namespace NHibernate.Test.NHSpecificTest.NH2318
 {

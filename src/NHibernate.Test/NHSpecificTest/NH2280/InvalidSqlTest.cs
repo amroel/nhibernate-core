@@ -4,7 +4,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using NHibernate.Dialect;
-using NHibernate.Linq;
+using NHibernate.LinqToHql;
 using NUnit.Framework;
 
 namespace NHibernate.Test.NHSpecificTest.NH2280

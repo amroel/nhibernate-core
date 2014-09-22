@@ -10,7 +10,7 @@ using NHibernate.Connection;
 using NHibernate.Dialect;
 using NHibernate.Exceptions;
 using NHibernate.Hql;
-using NHibernate.Linq.Functions;
+using NHibernate.LinqToHql.Functions;
 using NHibernate.Transaction;
 using NHibernate.Util;
 

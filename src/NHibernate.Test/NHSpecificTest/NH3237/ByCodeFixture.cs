@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using NHibernate.Cfg.MappingSchema;
-using NHibernate.Linq;
+using NHibernate.LinqToHql;
 using NHibernate.Mapping.ByCode;
 using NUnit.Framework;
 using System;

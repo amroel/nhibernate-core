@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
 using System.Linq.Expressions;
-using NHibernate.Linq;
+using NHibernate.LinqToHql;
 using NUnit.Framework;
 using SharpTestsEx;
 

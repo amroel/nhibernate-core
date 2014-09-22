@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using NHibernate.Criterion;
 using NUnit.Framework;
-using NHibernate.Linq;
+using NHibernate.LinqToHql;
 using System.Linq;
-using NHibernate.Linq.Functions;
+using NHibernate.LinqToHql.Functions;
 
 namespace NHibernate.Test.NHSpecificTest.NH2394
 {

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using NHibernate.DomainModel.Northwind.Entities;
-using NHibernate.Linq;
+using NHibernate.LinqToHql;
 using NHibernate.Linq_NEW;
 
 namespace NHibernate.Test.Linq_NEW.EndToEnd

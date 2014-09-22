@@ -6,7 +6,7 @@ using NHibernate.Driver;
 using NHibernate.Type;
 using NUnit.Framework;
 using Environment = NHibernate.Cfg.Environment;
-using NHibernate.Linq;
+using NHibernate.LinqToHql;
 
 namespace NHibernate.Test.NHSpecificTest.Dates
 {

@@ -7,7 +7,7 @@ using NHibernate.Cache;
 using NHibernate.Connection;
 using NHibernate.Exceptions;
 using NHibernate.Hql;
-using NHibernate.Linq.Functions;
+using NHibernate.LinqToHql.Functions;
 using NHibernate.Transaction;
 
 namespace NHibernate.Cfg

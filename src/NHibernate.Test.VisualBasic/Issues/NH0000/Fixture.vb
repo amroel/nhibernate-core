@@ -1,6 +1,6 @@
 ﻿Imports NUnit.Framework
 Imports NHibernate.Test.NHSpecificTest
-Imports NHibernate.Linq
+Imports NHibernate.LinqToHql
 
 Namespace Issues
 

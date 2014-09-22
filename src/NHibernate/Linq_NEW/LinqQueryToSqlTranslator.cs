@@ -113,7 +113,6 @@ namespace NHibernate.Linq_NEW
 			IQueryable q = c.Value as IQueryable;
 			if (q != null)
 			{
-				// assume constant nodes w/ IQueryables are table references
 				_sqlString.Append("SELECT * FROM ");
 				var helper = new SessionFactoryHelperExtensions(_session.Factory);
 				var persistor = helper.RequireClassPersister(q.ElementType.Name) as NHibernate.Persister.Entity.IQueryable;

@@ -4,7 +4,7 @@ using System.Linq;
 using log4net;
 using log4net.Appender;
 using log4net.Repository.Hierarchy;
-using NHibernate.Linq;
+using NHibernate.LinqToHql;
 using NUnit.Framework;
 
 namespace NHibernate.Test.NHSpecificTest.NH2459

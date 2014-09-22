@@ -3,7 +3,7 @@ using NHibernate.Cfg.Loquacious;
 using NHibernate.Context;
 using NHibernate.Engine;
 using NHibernate.Hql;
-using NHibernate.Linq.Functions;
+using NHibernate.LinqToHql.Functions;
 using NHibernate.Util;
 
 namespace NHibernate.Cfg

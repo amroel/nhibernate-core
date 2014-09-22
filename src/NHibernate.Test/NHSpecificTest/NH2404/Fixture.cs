@@ -1,5 +1,5 @@
 using System.Linq;
-using NHibernate.Linq;
+using NHibernate.LinqToHql;
 using NHibernate.Transform;
 using NUnit.Framework;
 

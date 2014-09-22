@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Threading;
 
 using NHibernate.Engine.Query;
-using NHibernate.Linq;
+using NHibernate.LinqToHql;
 using NHibernate.Util;
 
 using NUnit.Framework;

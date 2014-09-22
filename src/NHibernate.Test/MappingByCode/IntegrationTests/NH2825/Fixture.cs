@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using System.Linq;
-using NHibernate.Linq;
+using NHibernate.LinqToHql;
 using NUnit.Framework;
 
 namespace NHibernate.Test.MappingByCode.IntegrationTests.NH2825

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 using NHibernate.Event;
 using NHibernate.Hql;
-using NHibernate.Linq;
+using NHibernate.LinqToHql;
 using NHibernate.Type;
 using NHibernate.Util;
 
