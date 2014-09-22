@@ -10,7 +10,7 @@ namespace NHibernate.LinqToSql
 {
 	public static class LinqExtensionMethods
 	{
-		public static IQueryable<T> NewQuery<T>(this ISession session)
+		public static IQueryable<T> Query<T>(this ISession session)
 		{
 			return new LinqQuery<T>(new SessionImplementorQueryProvider(session.GetSessionImplementation()));
 		}

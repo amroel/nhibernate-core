@@ -17,7 +17,7 @@ namespace NHibernate.Test.LinqToSql.EndToEnd
 	public class QueryingSingleSimpleEntity : TestCaseMappingByCode
 	{
 		[Test]
-		public void SimplestPossible()
+		public void WithSimpleProperties()
 		{
 			var entity = new SimpleEntity { Id = 1, Simple = 1 };
 			Persist(entity);
@@ -25,7 +25,7 @@ namespace NHibernate.Test.LinqToSql.EndToEnd
 			{
 				using (var session = sessions.OpenSession())
 				{
-					var qry = session.NewQuery<SimpleEntity>();
+					var qry = session.Query<SimpleEntity>();
 					qry.ToList().Should().Have.Count.EqualTo(1);
 				}
 			}
