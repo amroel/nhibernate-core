@@ -551,6 +551,12 @@
     <Compile Include="LinqToHql\StatelessSessionQueringTest.cs" />
     <Compile Include="LinqToHql\ByMethod\SumTests.cs" />
     <Compile Include="LinqToSql\EndToEnd\QueryingSingleSimpleEntity.cs" />
+    <Compile Include="LinqToSql\SimpleEntity.cs" />
+    <Compile Include="LinqToSql\Units\FakeMetaDataRepository.cs" />
+    <Compile Include="LinqToSql\Units\LinqToSqlTranslatorStub.cs" />
+    <Compile Include="LinqToSql\Units\QueryProviderExecution.cs" />
+    <Compile Include="LinqToSql\Units\SqlQueryExecutorStub.cs" />
+    <Compile Include="LinqToSql\Units\TranslatingLinqExpression.cs" />
     <Compile Include="Logging\Log4NetLoggerTest.cs" />
     <Compile Include="Logging\LoggerProviderTest.cs" />
     <Compile Include="MappingByCode\ConventionModelMapperTests\ComponetsAccessorTests.cs" />

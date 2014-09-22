@@ -2,20 +2,18 @@ using System;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
-using NHibernate.Engine;
-using NHibernate.Hql.Ast.ANTLR;
 using NHibernate.SqlCommand;
 
 namespace NHibernate.LinqToSql
 {
-	public class LinqQueryToSqlTranslator : ExpressionVisitor
+	public class LinqQueryToSqlTranslator : ExpressionVisitor, ILinqToSqlTranslator
 	{
-		private readonly ISessionImplementor _session;
 		private StringBuilder _sqlString;
+		private readonly IMetaDataRepository _metaDataRepository;
 
-		public LinqQueryToSqlTranslator(ISessionImplementor session)
+		public LinqQueryToSqlTranslator(IMetaDataRepository metaDataRepository)
 		{
-			_session = session;
+			_metaDataRepository = metaDataRepository;
 		}
 
 		public TranslationResult Translate(Expression expression)
@@ -114,9 +112,8 @@ namespace NHibernate.LinqToSql
 			if (q != null)
 			{
 				_sqlString.Append("SELECT * FROM ");
-				var helper = new SessionFactoryHelperExtensions(_session.Factory);
-				var persistor = helper.RequireClassPersister(q.ElementType.Name) as NHibernate.Persister.Entity.IQueryable;
-				_sqlString.Append(persistor.TableName);
+				string tableName = _metaDataRepository.TableNameFor(q.ElementType);
+				_sqlString.Append(tableName);
 			}
 			else if (c.Value == null)
 			{

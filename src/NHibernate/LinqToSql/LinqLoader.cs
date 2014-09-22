@@ -10,9 +10,9 @@ namespace NHibernate.LinqToSql
 	{
 		private Enumerator _enumerator;
 
-		public LinqLoader(IDataReader dataReader, System.Action whenDone)
+		public LinqLoader(IDataReader dataReader)
 		{
-			_enumerator = new Enumerator(dataReader, whenDone);
+			_enumerator = new Enumerator(dataReader);
 		}
 
 		#region IEnumerable<T> Members
@@ -44,11 +44,9 @@ namespace NHibernate.LinqToSql
             private T _current;
 			private int[] _fieldLookup;
 			private readonly FieldInfo[] _fields;
-			private readonly System.Action _whenDone;
 
-			public Enumerator(IDataReader dataReader, System.Action whenDone)
+			public Enumerator(IDataReader dataReader)
 			{
-				_whenDone = whenDone;
 				_dataReader = dataReader;
 				_fields = typeof(T).GetFields();
 			}
@@ -66,7 +64,7 @@ namespace NHibernate.LinqToSql
 
 			public void Dispose()
 			{
-				_whenDone();
+				_dataReader.Dispose();
 			}
 
 			#endregion
@@ -88,6 +86,7 @@ namespace NHibernate.LinqToSql
 					}
 
 					T instance = new T();
+
 					for (int i = 0, n = _fields.Length; i < n; i++)
 					{
 						int index = _fieldLookup[i];

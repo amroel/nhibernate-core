@@ -7,12 +7,6 @@ using SharpTestsEx;
 
 namespace NHibernate.Test.LinqToSql.EndToEnd
 {
-	class SimpleEntity
-	{
-		public virtual int Id { get; set; }
-		public virtual int Simple { get; set; }
-	}
-
 	[TestFixture]
 	public class QueryingSingleSimpleEntity : TestCaseMappingByCode
 	{

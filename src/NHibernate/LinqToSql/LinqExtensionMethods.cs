@@ -1,10 +1,4 @@
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
-using NHibernate.Impl;
-using Remotion.Linq;
-using Remotion.Linq.Parsing.ExpressionTreeVisitors;
 
 namespace NHibernate.LinqToSql
 {
@@ -12,7 +6,12 @@ namespace NHibernate.LinqToSql
 	{
 		public static IQueryable<T> Query<T>(this ISession session)
 		{
-			return new LinqQuery<T>(new SessionImplementorQueryProvider(session.GetSessionImplementation()));
+			var sessionImplementor = session.GetSessionImplementation();
+			var executor = new SessionBatcherSqlQueryExecutor(sessionImplementor.Batcher);
+			var metaDataRepository = new SessionFactoryMetaDataRepoistory(sessionImplementor.Factory);
+			var translator = new LinqQueryToSqlTranslator(metaDataRepository);
+
+			return new LinqQuery<T>(new LinqToSqlQueryProvider(translator, executor));
 		}
 
 		//public static IQueryable<T> Query<T>(this IStatelessSession session)
