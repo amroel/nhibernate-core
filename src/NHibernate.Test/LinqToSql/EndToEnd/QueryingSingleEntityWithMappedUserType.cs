@@ -21,6 +21,7 @@ namespace NHibernate.Test.LinqToSql.EndToEnd
 				{
 					var qry = session.Query<SimpleUserTypeEntity>();
 					var result = qry.ToList();
+
 					result.Should().Have.Count.EqualTo(1);
 					result[0].Id.Should().Be(1);
 					result[0].SillyType.Should().Be(new MySillyType { MyValue = 1 });

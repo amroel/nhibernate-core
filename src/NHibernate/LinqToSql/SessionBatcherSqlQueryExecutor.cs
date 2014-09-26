@@ -6,21 +6,28 @@ namespace NHibernate.LinqToSql
 {
 	public class SessionBatcherSqlQueryExecutor : ISqlQueryExecutor
 	{
-		private readonly IBatcher _batcher;
+		private readonly ISessionImplementor _session;
 		private IDbCommand _command;
 		private IDataReader _innerReader;
 
-		public SessionBatcherSqlQueryExecutor(IBatcher batcher)
+		public SessionBatcherSqlQueryExecutor(ISessionImplementor session)
 		{
-			_batcher = batcher;
+			_session = session;
 		}
 
 		#region ISqlQueryExecutor Members
 
-		public void Run(TranslationResult translationResult)
+		public IMaterializer Run(TranslationResult translationResult)
 		{
-			_command = _batcher.PrepareQueryCommand(CommandType.Text, translationResult.Sql, translationResult.ParameterTypes);
-			_innerReader = _batcher.ExecuteReader(_command);
+			_command = _session.Batcher.PrepareQueryCommand(CommandType.Text, translationResult.Sql, translationResult.ParameterTypes);
+			_innerReader = _session.Batcher.ExecuteReader(_command);
+
+			var materializationProcess = new MaterializationProcess(translationResult);
+			var entityKeyProcessor = new EntityKeyProcessor(_session);
+			var twoPhaseLoadProcessor = new TwoPhaseLoadProcessorDecorator(_session, entityKeyProcessor);
+			var sessionCacheProcessor = new SessionCacheProcessorDecorator(_session, twoPhaseLoadProcessor);
+
+			return new MaterializerProcessorMaterializer(sessionCacheProcessor, materializationProcess);
 		}
 
 		#endregion
@@ -29,7 +36,7 @@ namespace NHibernate.LinqToSql
 
 		public void Close()
 		{
-			_batcher.CloseCommand(_command, _innerReader);
+			_session.Batcher.CloseCommand(_command, _innerReader);
 		}
 
 		public int Depth
@@ -68,7 +75,7 @@ namespace NHibernate.LinqToSql
 
 		public void Dispose()
 		{
-			_batcher.CloseCommand(_command, _innerReader);
+			Close();
 		}
 
 		#endregion

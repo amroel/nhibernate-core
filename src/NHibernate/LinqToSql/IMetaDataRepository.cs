@@ -1,8 +1,9 @@
+using NHibernate.Persister.Entity;
 
 namespace NHibernate.LinqToSql
 {
 	public interface IMetaDataRepository
 	{
-		string TableNameFor(System.Type entityType);		
+		IQueryable LoadingInfoFor(System.Type entityType);		
 	}
 }

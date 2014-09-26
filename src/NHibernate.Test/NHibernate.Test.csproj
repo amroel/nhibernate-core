@@ -555,7 +555,9 @@
     <Compile Include="LinqToSql\SimpleEntity.cs" />
     <Compile Include="LinqToSql\SimpleUserTypeEntity.cs" />
     <Compile Include="LinqToSql\Units\FakeMetaDataRepository.cs" />
+    <Compile Include="LinqToSql\Units\FakeQueryable.cs" />
     <Compile Include="LinqToSql\Units\LinqToSqlTranslatorStub.cs" />
+    <Compile Include="LinqToSql\Units\NullMaterializer.cs" />
     <Compile Include="LinqToSql\Units\QueryProviderExecution.cs" />
     <Compile Include="LinqToSql\Units\SqlQueryExecutorStub.cs" />
     <Compile Include="LinqToSql\Units\TranslatingLinqExpression.cs" />

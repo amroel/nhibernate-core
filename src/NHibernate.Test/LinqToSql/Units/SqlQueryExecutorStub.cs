@@ -8,8 +8,9 @@ namespace NHibernate.Test.LinqToSql.Units
 	{
 		#region ISqlQueryExecutor Members
 
-		public void Run(TranslationResult translationResult)
+		public IMaterializer Run(TranslationResult translationResult)
 		{
+			return new NullMaterializer();
 		}
 
 		#endregion

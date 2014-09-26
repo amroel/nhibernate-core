@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using NHibernate.LinqToSql;
+using NHibernate.Persister.Entity;
+using System;
 
 namespace NHibernate.Test.LinqToSql.Units
 {
@@ -14,9 +16,9 @@ namespace NHibernate.Test.LinqToSql.Units
 
 		#region IMetaDataRepository Members
 
-		public string TableNameFor(System.Type entityType)
+		public IQueryable LoadingInfoFor(System.Type entityType)
 		{
-			return _tableMap[entityType];
+			return new FakeQueryable { TableName = _tableMap[entityType] };
 		}
 
 		#endregion

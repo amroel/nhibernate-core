@@ -10,9 +10,9 @@ namespace NHibernate.LinqToSql
 	{
 		private Enumerator _enumerator;
 
-		public LinqLoader(IDataReader dataReader)
+		public LinqLoader(IDataReader dataReader, IMaterializer materializer)
 		{
-			_enumerator = new Enumerator(dataReader);
+			_enumerator = new Enumerator(dataReader, materializer);
 		}
 
 		#region IEnumerable<T> Members
@@ -41,13 +41,14 @@ namespace NHibernate.LinqToSql
 		private class Enumerator : IEnumerator<T>
 		{
 			private readonly IDataReader _dataReader;
-            private T _current;
-			private int[] _fieldLookup;
 			private readonly PropertyInfo[] _fields;
+			private readonly IMaterializer _materializer;
+            private T _current;
 
-			public Enumerator(IDataReader dataReader)
+			public Enumerator(IDataReader dataReader, IMaterializer materializer)
 			{
 				_dataReader = dataReader;
+				_materializer = materializer;
 				_fields = typeof(T).GetProperties();
 			}
 
@@ -80,31 +81,7 @@ namespace NHibernate.LinqToSql
 			{
 				if (_dataReader.Read())
 				{
-					if (_fieldLookup == null)
-					{
-						InitFieldLookup();
-					}
-
-					T instance = new T();
-
-					for (int i = 0, n = _fields.Length; i < n; i++)
-					{
-						int index = _fieldLookup[i];
-
-						if (index >= 0)
-						{
-							var fi = _fields[i];
-							if (_dataReader.IsDBNull(index))
-							{
-								fi.SetValue(instance, null, null);
-							}
-							else
-							{
-								fi.SetValue(instance, _dataReader.GetValue(index), null);
-							}
-						}
-					}
-
+					T instance = _materializer.Materialize<T>(_dataReader);
 					_current = instance;
 					return true;
 				}
@@ -118,27 +95,6 @@ namespace NHibernate.LinqToSql
 
 			#endregion
 
-			private void InitFieldLookup()
-			{
-				var map = new Dictionary<string, int>(StringComparer.InvariantCultureIgnoreCase);
-				for (int i = 0, n = _dataReader.FieldCount; i < n; i++)
-				{
-					map.Add(_dataReader.GetName(i), i);
-				}
-				_fieldLookup = new int[_fields.Length];
-				for (int i = 0; i < _fields.Length; i++)
-				{
-					int index;
-					if (map.TryGetValue(_fields[i].Name, out index))
-					{
-						_fieldLookup[i] = index;
-					}
-					else
-					{
-						_fieldLookup[i] = -1;
-					}
-				}
-			}
 		}
 	}
 }

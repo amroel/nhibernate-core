@@ -4,6 +4,6 @@ namespace NHibernate.LinqToSql
 {
 	public interface ISqlQueryExecutor : IDataReader
 	{
-		void Run(TranslationResult translationResult);
+		IMaterializer Run(TranslationResult translationResult);
 	}
 }

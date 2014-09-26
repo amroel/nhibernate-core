@@ -7,7 +7,7 @@ namespace NHibernate.LinqToSql
 		public static IQueryable<T> Query<T>(this ISession session)
 		{
 			var sessionImplementor = session.GetSessionImplementation();
-			var executor = new SessionBatcherSqlQueryExecutor(sessionImplementor.Batcher);
+			var executor = new SessionBatcherSqlQueryExecutor(sessionImplementor);
 			var metaDataRepository = new SessionFactoryMetaDataRepoistory(sessionImplementor.Factory);
 			var translator = new LinqQueryToSqlTranslator(metaDataRepository);
 
