@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using NHibernate.Dialect;
 using NHibernate.SqlCommand;
+using NHibernate.SqlCommand.Parser;
 using NHibernate.SqlTypes;
 using NHibernate.Util;
 
@@ -62,22 +63,50 @@ namespace NHibernate.Driver
 
 		public override IDbCommand GenerateCommand(CommandType type, SqlString sqlString, SqlType[] parameterTypes)
 		{
-			var command = base.GenerateCommand(type, sqlString, parameterTypes);
+			if(!sqlString.StartsWithCaseInsensitive("select"))
+				return base.GenerateCommand(type, sqlString, parameterTypes);
 
-			var expWithParams = GetStatementsWithCastCandidates(command.CommandText);
-			if (!string.IsNullOrWhiteSpace(expWithParams))
+			var parser = new FirebirdSelectParser(sqlString);
+			parser.Parse();
+
+			if (!parser.ParamsToTypeCast.Any())
+				return base.GenerateCommand(type, sqlString, parameterTypes);
+
+			var modifiedSql = new SqlString();
+			foreach (var part in sqlString)
 			{
-				var candidates = GetCastCandidates(expWithParams);
-				var castParams = from IDbDataParameter p in command.Parameters
-								 where candidates.Contains(p.ParameterName)
-								 select p;
-				foreach (IDbDataParameter param in castParams)
+				var param = part as Parameter;
+				if (param == null)
+					modifiedSql += new SqlString(part);
+				else
 				{
-					TypeCastParam(param, command);
+					var shouldTypeCast = parser.ParamsToTypeCast.Any(x => x.ParamPos == param.ParameterPosition);
+					if (shouldTypeCast)
+					{
+						var castType = GetFbTypeFromDbType(parameterTypes[param.ParameterPosition.Value].DbType);
+						modifiedSql += SqlString.Parse(string.Format("cast(? as {0})", castType));
+					}
+					else
+						modifiedSql += new SqlString(part);
 				}
 			}
 
-			return command;
+			return base.GenerateCommand(type, modifiedSql, parameterTypes);
+
+			//var expWithParams = GetStatementsWithCastCandidates(command.CommandText);
+			//if (!string.IsNullOrWhiteSpace(expWithParams))
+			//{
+			//	var candidates = GetCastCandidates(expWithParams);
+			//	var castParams = from IDbDataParameter p in command.Parameters
+			//					 where candidates.Contains(p.ParameterName)
+			//					 select p;
+			//	foreach (IDbDataParameter param in castParams)
+			//	{
+			//		TypeCastParam(param, command);
+			//	}
+			//}
+
+			//return command;
 		}
 
 		private string GetStatementsWithCastCandidates(string commandText)
