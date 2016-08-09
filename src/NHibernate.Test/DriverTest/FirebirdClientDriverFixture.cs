@@ -68,7 +68,7 @@ namespace NHibernate.Test.DriverTest
 
 			_driver.AdjustCommand(cmd);
 
-			var expectedCommandTxt = "select (case when col = @p0 then cast(@p1 as VARCHAR(255)) else cast(@p2 as VARCHAR(255)) end) from table";
+			var expectedCommandTxt = "select (case when col = @p0 then cast(@p1 as VARCHAR(255)) else @p2 end) from table";
 			Assert.That(cmd.CommandText, Is.EqualTo(expectedCommandTxt));
 		}
 
@@ -80,7 +80,7 @@ namespace NHibernate.Test.DriverTest
 
 			_driver.AdjustCommand(cmd);
 
-			var expectedCommandTxt = "select (case when col = @p0 then cast(@p1 as INTEGER) else cast(@p2 as INTEGER) end) from table";
+			var expectedCommandTxt = "select (case when col = @p0 then cast(@p1 as INTEGER) else @p2 end) from table";
 			Assert.That(cmd.CommandText, Is.EqualTo(expectedCommandTxt));
 		}
 
