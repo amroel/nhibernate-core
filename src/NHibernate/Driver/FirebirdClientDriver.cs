@@ -63,7 +63,7 @@ namespace NHibernate.Driver
 
 		public override IDbCommand GenerateCommand(CommandType type, SqlString sqlString, SqlType[] parameterTypes)
 		{
-			if(!sqlString.StartsWithCaseInsensitive("select"))
+			if(sqlString.IndexOfCaseInsensitive("select") == -1)
 				return base.GenerateCommand(type, sqlString, parameterTypes);
 
 			var parser = new FirebirdSelectParser(sqlString);
@@ -73,6 +73,7 @@ namespace NHibernate.Driver
 				return base.GenerateCommand(type, sqlString, parameterTypes);
 
 			var modifiedSql = new SqlString();
+			var paramPos = 0;
 			foreach (var part in sqlString)
 			{
 				var param = part as Parameter;
@@ -80,33 +81,20 @@ namespace NHibernate.Driver
 					modifiedSql += new SqlString(part);
 				else
 				{
-					var shouldTypeCast = parser.ParamsToTypeCast.Any(x => x.ParamPos == param.ParameterPosition);
+					var shouldTypeCast = parser.ParamsToTypeCast.Any(x => x.ParamPos == paramPos);
 					if (shouldTypeCast)
 					{
-						var castType = GetFbTypeFromDbType(parameterTypes[param.ParameterPosition.Value].DbType);
+						var castType = GetFbTypeFromDbType(parameterTypes[paramPos].DbType);
 						modifiedSql += SqlString.Parse(string.Format("cast(? as {0})", castType));
 					}
 					else
 						modifiedSql += new SqlString(part);
+
+					paramPos++;
 				}
 			}
 
 			return base.GenerateCommand(type, modifiedSql, parameterTypes);
-
-			//var expWithParams = GetStatementsWithCastCandidates(command.CommandText);
-			//if (!string.IsNullOrWhiteSpace(expWithParams))
-			//{
-			//	var candidates = GetCastCandidates(expWithParams);
-			//	var castParams = from IDbDataParameter p in command.Parameters
-			//					 where candidates.Contains(p.ParameterName)
-			//					 select p;
-			//	foreach (IDbDataParameter param in castParams)
-			//	{
-			//		TypeCastParam(param, command);
-			//	}
-			//}
-
-			//return command;
 		}
 
 		private string GetStatementsWithCastCandidates(string commandText)

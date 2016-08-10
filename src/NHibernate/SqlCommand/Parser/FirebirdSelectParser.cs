@@ -42,89 +42,57 @@ namespace NHibernate.SqlCommand.Parser
 
 		private void ParseSelectClause(IEnumerator<SqlToken> tokenizer)
 		{
-			int blockLevel = 0;
-			SqlToken columnBeginToken = null;
-			SqlToken columnEndToken = null;
-			SqlToken columnAliasToken = null;
-
 			SqlToken prevToken = null;
+			var caseBlock = 0;
+
 			do
 			{
 				var currentToken = tokenizer.Current;
 				if (currentToken == null)
 					break;
 
-				columnBeginToken = columnBeginToken ?? currentToken;
-
 				switch (currentToken.TokenType)
 				{
-					//case SqlTokenType.BracketOpen:
-					//	blockLevel++;
-					//	break;
-
-					//case SqlTokenType.BracketClose:
-					//	blockLevel--;
-					//	break;
-
 					case SqlTokenType.Text:
-						//if (blockLevel != 0)
-						//	break;
-
-						if (currentToken.Equals(",", StringComparison.InvariantCultureIgnoreCase))
-						{
-							if (columnAliasToken != null)
-							{
-								_columns.Add(ParseSelectColumnDefinition(columnBeginToken, columnEndToken ?? columnAliasToken, columnAliasToken));
-							}
-						}
-
 						if (currentToken.Equals("from", StringComparison.InvariantCultureIgnoreCase))
 						{
-							if (columnAliasToken != null)
-							{
-								_columns.Add(ParseSelectColumnDefinition(columnBeginToken, columnEndToken ?? columnAliasToken, columnAliasToken));
-							}
 							return;
 						}
 
-						if (currentToken.Equals("as", StringComparison.InvariantCultureIgnoreCase))
+						if (currentToken.Equals("case", StringComparison.InvariantCultureIgnoreCase))
 						{
-							columnEndToken = prevToken;
-						}
-
-						if (currentToken.Equals("then", StringComparison.InvariantCultureIgnoreCase))
-						{
-							if (prevToken.TokenType == SqlTokenType.Parameter)
-								ParamsToTypeCast.Add(new FbParamDef(_paramPos - 1));
-						}
-
-						columnAliasToken = currentToken;
-						break;
-
-					case SqlTokenType.DelimitedText:
-						if (blockLevel != 0)
+							caseBlock++;
 							break;
-
-						columnAliasToken = currentToken;
-						break;
-
-					case SqlTokenType.Comma:
-						if (blockLevel != 0)
-							break;
-
-						if (columnAliasToken != null)
-						{
-							_columns.Add(ParseSelectColumnDefinition(columnBeginToken, columnEndToken ?? columnAliasToken, columnAliasToken));
 						}
-						columnBeginToken = columnEndToken = columnAliasToken = null;
+
+						if (currentToken.Equals("end", StringComparison.InvariantCultureIgnoreCase))
+						{
+							if (caseBlock > 0)
+							{
+								caseBlock--;
+								break;
+							}
+						}
+
 						break;
 
 					case SqlTokenType.Parameter:
 						_paramPos++;
+
 						if (prevToken.Equals("first", StringComparison.InvariantCultureIgnoreCase))
 							break;
+
 						if (prevToken.Equals("skip", StringComparison.InvariantCultureIgnoreCase))
 							break;
+
+						if (caseBlock > 0)
+						{
+							if (prevToken.Equals("then", StringComparison.InvariantCultureIgnoreCase))
+							{
+								ParamsToTypeCast.Add(new FbParamDef(_paramPos - 1));
+							}
+							break;
+						}
 
 						ParamsToTypeCast.Add(new FbParamDef(_paramPos - 1));
 						break;
@@ -134,11 +102,6 @@ namespace NHibernate.SqlCommand.Parser
 
 			}
 			while (tokenizer.MoveNext());
-
-			if (columnAliasToken != null)
-			{
-				_columns.Add(ParseSelectColumnDefinition(columnBeginToken, columnEndToken ?? columnAliasToken, columnAliasToken));
-			}
 		}
 
 		private static bool TryParseUntil(IEnumerator<SqlToken> tokenizer, string keyword)

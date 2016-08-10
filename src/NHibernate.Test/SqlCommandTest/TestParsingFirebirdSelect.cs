@@ -96,5 +96,17 @@ namespace NHibernate.Test.SqlCommandTest
 			Assert.That(parser.ParamsToTypeCast.Count, Is.EqualTo(1));
 			Assert.That(parser.ParamsToTypeCast.SingleOrDefault(x => x.ParamPos == 0), Is.Not.Null);
 		}
+
+		[Test]
+		public void SelectWithParamInCaseWhen()
+		{
+			var sql = SqlString.Parse("select (case when col = ? then ? else ? end) from table");
+			var parser = new FirebirdSelectParser(sql);
+
+			parser.Parse();
+
+			Assert.That(parser.ParamsToTypeCast.Count, Is.EqualTo(1));
+			Assert.That(parser.ParamsToTypeCast.SingleOrDefault(x => x.ParamPos == 1), Is.Not.Null);
+		}
 	}
 }
